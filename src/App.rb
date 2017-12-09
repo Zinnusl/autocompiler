@@ -14,11 +14,16 @@ class App
 
 		File.open('build/main.cpp', 'w') do
 			|file|
-			file.write "int main() { return 0; }"
+			file.write '#include "gtest/gtest.h" 
+				int main(int argc, char** argv) {
+					::testing::InitGoogleTest(&argc, argv);
+				  return RUN_ALL_TESTS();
+			  }
+			'
 		end
 
 		pwd = Dir.pwd
 
-		system("SET PATH=#{pwd}/MinGW/mingw64/bin;%PATH% && g++.exe build/main.cpp -o build/out.exe")
+		system("SET PATH=#{pwd}/MinGW/mingw64/bin;%PATH% && g++.exe #{@test_files.join(' ')} build/main.cpp -o build/out.exe lgmockd lgmock_maind lgtestd lgtest_maind")
 	end
 end

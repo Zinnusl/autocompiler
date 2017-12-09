@@ -1,3 +1,6 @@
 `` -> `//includes_rule\n//main_rule\n`
-`//includes_rule` -> `#include<iostream>`
-`//main_rule` -> `int main(int argc, char** argv)\n{\nreturn 0;\n}`
+`//includes_rule` -> `#include<iostream>\n#include "gtest/gtest.h"`
+`//main_rule` -> `int main(int argc, char** argv)\n{\n
+  ::testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
+\n}`

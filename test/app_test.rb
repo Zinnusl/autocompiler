@@ -1,6 +1,10 @@
 require './src/App'
 
 describe App do
+	before :each do
+		File.delete "build/out.exe" if File.exists? "build/out.exe"
+	end
+
 	it 'should parse a grammar file on start' do
 		expect(File).to receive(:read).with(/\.grammar/).and_return("`a` -> `b`\n`b` -> `c`\n")
 
@@ -24,7 +28,6 @@ describe App do
 	end
 
 	it 'should create a executable (.exe)' do
-		File.delete "build/out.exe"
 		expect(File.exists? "build/out.exe").to eq false
 
 		app = App.new [""]
@@ -35,6 +38,15 @@ describe App do
 		it 'should accept the tests option' do
 			app = App.new [""]
 			expect(system("./build/out.exe tests")).to eq true
+		end
+		describe 'tests option' do
+			it 'should execute the google unit tests' do
+				app = App.new ["test/failing_unit_test.cpp"]
+				expect(system("./build/out.exe tests")).to eq false
+
+				app = App.new ["test/passing_unit_test.cpp"]
+				expect(system("./build/out.exe tests")).to eq true
+			end
 		end
 	end
 end
