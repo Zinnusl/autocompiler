@@ -15,22 +15,15 @@ describe App do
 	end
 
 	it 'should create a executable (.exe)' do
-		file = double('file')
-		expect(File).to receive(:open).with("build/out.exe", "w").and_yield(file)
-		expect(file).to receive(:write).with("test")
+		File.delete "build/out.exe"
+		expect(File.exists? "build/out.exe").to eq false
 
 		app = App.new [""]
+
+		expect(File.exists? "build/out.exe").to eq true
 	end
 	describe 'executable' do
 		it 'should accept the tests option' do
-			File.open('build/main.cpp', 'w') do
-				|file|
-				file.write "int main() { return 0; }"
-			end
-
-			pwd = Dir.pwd
-
-			expect(system("SET PATH=#{pwd}/MinGW/mingw64/bin;%PATH% && g++.exe build/main.cpp -o build/out.exe")).to eq true
 			expect(system("./build/out.exe tests")).to eq true
 		end
 	end

@@ -8,8 +8,13 @@ class App
 
 		Grammar.parse 'cpp.grammar'
 
-		File.open('build/out.exe', 'w') do |file|
-			file.write "test"
+		File.open('build/main.cpp', 'w') do
+			|file|
+			file.write "int main() { return 0; }"
 		end
+
+		pwd = Dir.pwd
+
+		system("SET PATH=#{pwd}/MinGW/mingw64/bin;%PATH% && g++.exe build/main.cpp -o build/out.exe")
 	end
 end
