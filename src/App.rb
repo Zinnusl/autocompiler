@@ -6,6 +6,10 @@ class App
 	def initialize(args)
 		@test_files = args.select {|arg| arg.match /.+\.cpp/}
 
+		@test_files.each do |file|
+			raise RuntimeError.new("test file not found: #{file.to_s}") if not File.exists? ("./" + file)
+		end
+
 		Grammar.parse 'cpp.grammar'
 
 		File.open('build/main.cpp', 'w') do

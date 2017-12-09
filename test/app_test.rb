@@ -6,12 +6,21 @@ describe App do
 
 		app = App.new [""]
 	end
-	it 'should accept a list of cpp source files' do
-		args = [ "a.cpp", "b.cpp", "c.cpp", "ruby.rb"]
+	it 'should accept a list of cpp source files (test files)' do
+		args = [ "test/passing_unit_test.cpp", "test/failing_unit_test.cpp"]
 
 		app = App.new args
 
-		expect(app.test_files).to match_array(["a.cpp", "b.cpp", "c.cpp"])
+		expect(app.test_files).to match_array(["test/failing_unit_test.cpp", "test/passing_unit_test.cpp"])
+	end
+	it 'should output a error if one of the input test files was not found' do
+		args = ["test/passing_unit_test.cpp", "test/failing_unit_test.cpp", "non_existant.cpp"]
+
+		expect { app = App.new args }.to raise_error(RuntimeError, /test file not found/)
+
+		args = ["test/passing_unit_test.cpp", "test/failing_unit_test.cpp"]
+
+		expect { app = App.new args }.not_to raise_error
 	end
 
 	it 'should create a executable (.exe)' do
