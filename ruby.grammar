@@ -1,0 +1,3 @@
+`` -> `#requires_rule\n#main_rule\n`
+`#requires_rule` -> ``
+`#main_rule` -> `class App\ndef self.main()\nend\nend\nApp.main(ARGV)\n`
