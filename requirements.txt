@@ -6,3 +6,4 @@
 	- the program should only produce source code that follow that grammar
 - the program should create a executable (.exe)
 	- the executable should pass the tests given as the input
+	- the program should output an error if passing the tests with the given grammar is not possible
