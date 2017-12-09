@@ -1,13 +1,13 @@
-- the program should accept a list of cpp source files (google-test tests)
+- the program should accept a list of ruby source files (rspec tests)
 	- it should output usage if no files are given
 	- it should output a error if one of the files was not found
 - the program should parse a grammar file on start
 	- the program should show an error if the file is not found
 	- the file should contain rules in the form of `a` -> `b` (context-free grammar)
 	- the program should only produce source code that follow that grammar
-- the program should create a executable (.exe)
+- the program should create a ruby application
 	- the executable should accept the 'test' option
-		- this option should execute the unit tests compiled into the executable
+		- this option should execute the unit tests compiled in the application
 		- it should the return 0 if all tests pass and otherwise the number of failed tests
 	- the executable should pass the tests given as the input
 	- the program should output an error if passing the tests with the given grammar is not possible
