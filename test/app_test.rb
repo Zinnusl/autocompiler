@@ -23,7 +23,7 @@ describe App do
 	end
 	describe 'executable' do
 		it 'should accept the tests option' do
-			File.open('main.cpp', 'w') do
+			File.open('build/main.cpp', 'w') do
 				|file|
 				file.write "int main() { return 0; }"
 			end
