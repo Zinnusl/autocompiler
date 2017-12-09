@@ -24,6 +24,7 @@ describe App do
 	end
 	describe 'executable' do
 		it 'should accept the tests option' do
+			app = App.new [""]
 			expect(system("./build/out.exe tests")).to eq true
 		end
 	end
