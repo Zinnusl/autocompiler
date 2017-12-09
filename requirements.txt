@@ -1,4 +1,5 @@
 - the program should accept a list of cpp source files (google-test tests)
+	- it should output usage if no files are given
 - the program should parse a grammar file on start
 	- the file should contain rules in the form of `a` -> `b` (context-free grammar)
 	- the program should only produce source code that follow that grammar
