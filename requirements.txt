@@ -5,5 +5,8 @@
 	- the file should contain rules in the form of `a` -> `b` (context-free grammar)
 	- the program should only produce source code that follow that grammar
 - the program should create a executable (.exe)
+	- the executable should accept the 'test' option
+		- this option should execute the unit tests compiled into the executable
+		- it should the return 0 if all tests pass and otherwise the number of failed tests
 	- the executable should pass the tests given as the input
 	- the program should output an error if passing the tests with the given grammar is not possible
